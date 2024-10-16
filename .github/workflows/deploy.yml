@@ -34,3 +34,14 @@ jobs:
           key: ${{ secrets.KEY }}
           source: "*,!node_modules,!.vscode"
           target: /var/www/app
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd /var/www/app
+            npm ci
